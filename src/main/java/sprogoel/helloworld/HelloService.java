@@ -1,4 +1,4 @@
-package sprogoel.cbs.helloworld;
+package sprogoel.helloworld;
 /**
  * A simple CDI service which is able to say hello to someone
  *
