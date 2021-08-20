@@ -22,6 +22,13 @@ public class ReservationService {
     @Inject
     ReservationRepo reservationRepo;
 
+    /**
+     * Creates a reservation for a movie
+     * @param request {@link ReservationRequest}
+     * @return Newly created {@link Reservation}
+     * @throws ReservationException with error code 404 if a movie does not exist.
+     * Error code 400 if there are not enough seats to fulfill reservation
+     */
     public Reservation createReservation(ReservationRequest request) throws ReservationException {
         MovieShowing movie = movieShowingsRepo.getById(request.getShowingId());
         if (movie == null) {
