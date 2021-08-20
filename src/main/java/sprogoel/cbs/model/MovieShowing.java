@@ -1,19 +1,29 @@
 package sprogoel.cbs.model;
 
-import java.util.Date;
-import java.util.List;
 
+import javax.persistence.*;
+import java.util.Date;
+import java.util.Set;
+
+@Entity
+@Table(schema = "cbs", name = "movie_showing")
 public class MovieShowing {
 
     public static final int MAX_SEAT_COUNT = 50;
 
+    @Id
+    @GeneratedValue(generator = "increment")
     private Long id;
+
+    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
     private String title;
-    private List<Reservation> reservationList;
 
-    public MovieShowing(Long id, Date date, String title, List<Reservation> reservationList) {
-        this.id = id;
+
+    @OneToMany(mappedBy = "movieShowing", fetch = FetchType.EAGER)
+    private Set<Reservation> reservationList;
+
+    public MovieShowing(Date date, String title, Set<Reservation> reservationList) {
         this.date = date;
         this.title = title;
         this.reservationList = reservationList;
@@ -22,9 +32,15 @@ public class MovieShowing {
     public MovieShowing() {
     }
 
+
     public Long getId() {
         return id;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
 
     public Date getDate() {
         return date;
@@ -34,6 +50,7 @@ public class MovieShowing {
         this.date = date;
     }
 
+
     public String getTitle() {
         return title;
     }
@@ -42,13 +59,15 @@ public class MovieShowing {
         this.title = title;
     }
 
-    public List<Reservation> getReservationList() {
+
+    public Set<Reservation> getReservationList() {
         return reservationList;
     }
 
-    public void setReservationList(List<Reservation> reservationList) {
+    public void setReservationList(Set<Reservation> reservationList) {
         this.reservationList = reservationList;
     }
+
 
     public int calcRemainingSeats() {
         int totalReserved = reservationList.stream().mapToInt(Reservation::getSeatCount).sum();

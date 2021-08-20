@@ -2,9 +2,10 @@ package sprogoel.cbs.model.dto;
 
 import sprogoel.cbs.model.MovieShowing;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class MovieShowingResponse {
+public class MovieShowingResponse implements Serializable {
 
     private Long id;
     private Date date;

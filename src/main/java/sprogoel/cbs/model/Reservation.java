@@ -1,16 +1,28 @@
 package sprogoel.cbs.model;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(schema = "cbs", name = "reservation")
 public class Reservation {
 
+    @Id
+    @GeneratedValue(generator = "increment")
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "movie_showing_id")
     private MovieShowing movieShowing;
+
+    @Column(name = "reservation_time")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date reservationTime;
+
+    @Column(name = "seat_count")
     private Integer seatCount;
 
-    public Reservation(Long id, MovieShowing movieShowing, Date reservationTime, Integer seatCount) {
-        this.id = id;
+    public Reservation(MovieShowing movieShowing, Date reservationTime, Integer seatCount) {
         this.movieShowing = movieShowing;
         this.reservationTime = reservationTime;
         this.seatCount = seatCount;
@@ -18,6 +30,7 @@ public class Reservation {
 
     public Reservation() {
     }
+
 
     public Long getId() {
         return id;
