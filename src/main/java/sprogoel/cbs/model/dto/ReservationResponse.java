@@ -1,5 +1,6 @@
 package sprogoel.cbs.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import sprogoel.cbs.model.Reservation;
 
 import java.io.Serializable;
@@ -8,6 +9,7 @@ import java.util.Date;
 public class ReservationResponse implements Serializable {
 
     private Long id;
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
     private Date reservationTime;
     private Long movieId;
     private int seatsReserved;
