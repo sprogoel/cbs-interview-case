@@ -21,24 +21,28 @@ mvn clean install wildfly:deploy
 ```
 
 ## REST endpoints
-The following REST endpoints are exposed by the server
+The following REST endpoints are exposed by the server:
 ### GET - Lists all movie showings
 ```
-/rest/cbs/show-all
+/cbs-interview-case/rest/cbs/show-all
 ```
 
 ### GET - List a single movie showing
 ```
-/rest/cbs/show/{id}
+/cbs-interview-case/rest/cbs/show/{id}
 ``` 
 
 ### POST - Make a reservation
 ```
-/rest/cbs/reserve
+/cbs-interview-case/rest/cbs/reserve
 ``` 
 
 ### DELETE - Delete a reservation
 ```
-/rest/cbs/cancel/{id}
+/cbs-interview-case/rest/cbs/cancel/{id}
 ```
 
+### OpenApi documentation can be found at:
+```
+/cbs-interview-case/rest/openapi.json
+```
